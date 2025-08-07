@@ -15,8 +15,18 @@ config.window_decorations = "RESIZE"
 local mux = wezterm.mux
 
 wezterm.on('gui-startup', function(cmd)
-	local tab, pane, window = mux.spawn_window(cmd or {})
-	window:gui_window():maximize()
+    local tab, pane, window = mux.spawn_window(cmd or {})
+    window:gui_window():maximize()
 end)
+
+config.keys = {
+    {
+        key = 'e',
+        mods = 'CTRL',
+        action = wezterm.action.SpawnCommandInNewTab {
+            args = { "nvim" },
+        }
+    }
+}
 
 return config
