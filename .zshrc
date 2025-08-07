@@ -67,8 +67,7 @@ zstyle ':fzf-tab:complete:cd*' fzf-preview 'ls --color $realpath'
 alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
+alias cat='bat --paging=never'
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-
-
