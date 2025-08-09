@@ -4,18 +4,26 @@ return {
         version = "1.*", -- Use latest release with prebuilt binaries
         event = "InsertEnter",
         dependencies = {
-            "rafamadriz/friendly-snippets", -- For snippets
+            "rafamadriz/friendly-snippets",
         },
         opts = {
-            keymap = { preset = "default" },             -- Default insert mode keybindings
-            appearance = { nerd_font_variant = "mono" }, -- Optional icon alignment
+            keymap = {
+                preset = "enter", -- Disable default mappings
+            },
+            appearance = {
+                nerd_font_variant = "mono",
+            },
             completion = {
-                documentation = { auto_show = true },    -- Show docs popup automatically
+                documentation = {
+                    auto_show = true,
+                },
             },
             sources = {
                 default = { "lsp", "snippets", "path", "buffer" },
             },
-            fuzzy = { implementation = "prefer_rust_with_warning" },
+            fuzzy = {
+                implementation = "prefer_rust_with_warning",
+            },
         },
         opts_extend = { "sources.default" },
         config = function(_, opts)
@@ -31,6 +39,7 @@ return {
             "rafamadriz/friendly-snippets",
         },
     },
+
     {
         "giuxtaposition/blink-cmp-copilot"
     },
