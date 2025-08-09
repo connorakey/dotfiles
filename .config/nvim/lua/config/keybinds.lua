@@ -1,2 +1,0 @@
--- Keybinds
-vim.g.mapleader = " "
