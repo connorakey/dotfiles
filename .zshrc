@@ -27,7 +27,7 @@ autoload -U compinit && compinit
 zinit cdreplay -q
 
 # oh-my-posh init
-eval "$(oh-my-posh init zsh)"
+eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/config.json)"
 
 # Keybindings
 bindkey -e
@@ -60,3 +60,5 @@ alias cat='bat --paging=never'
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+
+fastfetch
