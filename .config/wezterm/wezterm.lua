@@ -26,6 +26,13 @@ config.keys = {
         action = wezterm.action.SpawnCommandInNewTab {
             args = { "nvim" },
         }
+    },
+    {
+        key = 'q',
+        mods = 'CTRL',
+        action = wezterm.action.SpawnCommandInNewTab {
+            args = { "zellij" },
+        }
     }
 }
 
