@@ -1,4 +1,4 @@
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 -- Font Settings
@@ -14,26 +14,26 @@ config.window_decorations = "RESIZE"
 
 local mux = wezterm.mux
 
-wezterm.on('gui-startup', function(cmd)
-    local tab, pane, window = mux.spawn_window(cmd or {})
-    window:gui_window():maximize()
+wezterm.on("gui-startup", function(cmd)
+	local tab, pane, window = mux.spawn_window(cmd or {})
+	window:gui_window():maximize()
 end)
 
 config.keys = {
-    {
-        key = 'e',
-        mods = 'CTRL',
-        action = wezterm.action.SpawnCommandInNewTab {
-            args = { "nvim" },
-        }
-    },
-    {
-        key = 'q',
-        mods = 'CTRL',
-        action = wezterm.action.SpawnCommandInNewTab {
-            args = { "zellij" },
-        }
-    }
+	{
+		key = "e",
+		mods = "CTRL",
+		action = wezterm.action.SpawnCommandInNewTab({
+			args = { "nvim" },
+		}),
+	},
+	{
+		key = "q",
+		mods = "CTRL",
+		action = wezterm.action.SpawnCommandInNewTab({
+			args = { "tmux" },
+		}),
+	},
 }
 
 return config
