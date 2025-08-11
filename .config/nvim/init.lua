@@ -143,10 +143,28 @@ require("lazy").setup({
           f = {
             name = "Find",
             b = { "<cmd>Telescope buffers<cr>", "Find Buffers" },
+            c = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Fuzzy Find in Current Buffer" },
             f = { "<cmd>Telescope find_files<cr>", "Find Files" },
-            g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+            g = {
+              name = "Git",
+              b = { "<cmd>Telescope git_branches<cr>", "Git Branches" },
+              c = { "<cmd>Telescope git_commits<cr>", "Git Commits" },
+              s = { "<cmd>Telescope git_status<cr>", "Git Status" },
+              S = { "<cmd>Telescope git_stash<cr>", "Git Stash" },
+
+            },
+            G = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
             h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
+            p = { "<cmd>Telescope projects<cr>", "Find Projects" },
+            r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
           },
+          h = {
+            name = "Harpoon",
+            a = { "Add File to Harpoon" },
+            h = { "Harpoon Menu" },
+            n = { "Next Harpoon File" },
+            p = { "Previous Harpoon File" },
+          }
         }, { prefix = "<leader>" })
       end,
     },
@@ -343,13 +361,14 @@ require("lazy").setup({
         }
 
         -- Run lint on save, buffer enter, focus gain, insert leave with short delay for stable inline diagnostics
-        vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "FocusGained", "InsertLeave" }, {
-          callback = function()
-            vim.defer_fn(function()
-              lint.try_lint()
-            end, 300)
-          end,
-        })
+        vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "FocusGained", "InsertLeave" },
+          {
+            callback = function()
+              vim.defer_fn(function()
+                lint.try_lint()
+              end, 300)
+            end,
+          })
       end,
     }, -- nvim-lint end
 
@@ -404,7 +423,53 @@ require("lazy").setup({
         require("mini.pairs").setup()
       end,
 
-    },
+    }, -- end mini.pairs
+    -- harpoon2 + telescope integration
+    {
+      "ThePrimeagen/harpoon",
+      branch = "harpoon2",
+      dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+      config = function()
+        local harpoon = require("harpoon")
+        harpoon:setup()
+
+        -- Telescope picker for Harpoon list
+        local function harpoon_telescope()
+          local conf = require("telescope.config").values
+          local finders = require("telescope.finders")
+          local pickers = require("telescope.pickers")
+          local actions = require("telescope.actions")
+          local action_state = require("telescope.actions.state")
+
+          pickers.new({}, {
+            prompt_title = "Harpoon",
+            finder = finders.new_table({
+              results = harpoon:list():display(),
+            }),
+            sorter = conf.generic_sorter({}),
+            attach_mappings = function(_, map)
+              local select_item = function(prompt_bufnr)
+                local selection = action_state.get_selected_entry()
+                actions.close(prompt_bufnr)
+                harpoon:list():select(selection.index)
+              end
+              map("i", "<CR>", select_item)
+              map("n", "<CR>", select_item)
+              return true
+            end,
+          }):find()
+        end
+
+        -- Keymaps
+        vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end,
+          { desc = "Harpoon add file" })
+        vim.keymap.set("n", "<leader>hh", harpoon_telescope, { desc = "Harpoon telescope menu" })
+        vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end,
+          { desc = "Harpoon next" })
+        vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end,
+          { desc = "Harpoon prev" })
+      end,
+    }, -- end harpoon2 + telescope integration
   },
   install = { colorscheme = { "catppuccin" } },
   checker = { enabled = true },
@@ -419,21 +484,6 @@ vim.keymap.set("n", "<leader>e", function()
     vim.cmd("Neotree toggle")
   end
 end, { noremap = true, silent = true })
-
-local keymap_opts = { noremap = true, silent = true }
-
--- Telescope keymaps
-vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", keymap_opts)
-vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", keymap_opts)
-vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", keymap_opts)
-vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", keymap_opts)
-
--- Code action keymaps
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, keymap_opts)
-vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, keymap_opts)
-vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, keymap_opts)
-vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, keymap_opts)
-vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, keymap_opts)
 
 -- Options
 vim.opt.expandtab = true
