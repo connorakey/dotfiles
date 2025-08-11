@@ -57,6 +57,7 @@ alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
 alias cat='bat --paging=never'
+alias v='nvim'
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
