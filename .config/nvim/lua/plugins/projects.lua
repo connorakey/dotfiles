@@ -3,7 +3,7 @@ return {
 	lazy = false,
 	config = function()
 		require("project_nvim").setup({
-			autochdir = true, -- Disable project.nvim's autochdir
+			silent_chdir = true,
 			detection_methods = { "pattern", "lsp" },
 			patterns = {
 				".git", -- Git repository
