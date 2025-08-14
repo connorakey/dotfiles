@@ -20,9 +20,7 @@ end, { desc = "Find Projects" })
 
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition)
-vim.keymap.set("n", "<leader>cf", function()
-	require("conform").format({ async = true, lsp_format = "fallback" })
-end)
+-- Code Formatting keybind is located in plugins/none-ls.lua
 vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover)
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename)
 
