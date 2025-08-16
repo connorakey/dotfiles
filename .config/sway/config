@@ -16,7 +16,7 @@ set $right l
 # Your preferred terminal emulator
 set $term wezterm
 # Your preferred application launcher
-set $menu fuzzy
+set $menu fuzzel
 
 ### Output configuration
 #
@@ -57,8 +57,26 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #       xkb_layout "eu"
 #   }
 #
+
+input 8916:5379:Glorious_Model_I {
+    accel_profile "flat"     # Disable mouse acceleration
+}
+
 # You can also configure each device individually.
 # Read `man 5 sway-input` for more information about this section.
+
+exec waybar
+
+set $GTK_THEME catppuccin-frappe-blue-standard+default
+
+exec_always --no-startup-id \
+  export GTK_THEME=$GTK_THEME
+
+
+titlebar_padding 1
+titlebar_border_thickness 0
+
+
 
 ### Key bindings
 #
@@ -219,23 +237,5 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
     bindsym Print exec grim
-
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
-}
 
 include /etc/sway/config.d/*
