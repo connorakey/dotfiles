@@ -59,6 +59,8 @@ alias c='clear'
 alias cat='bat --paging=never'
 alias v='nvim'
 
+export PATH="$HOME/.emacs.d/bin:$PATH"
+
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
