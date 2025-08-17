@@ -100,6 +100,8 @@ titlebar_border_thickness 0
     # Start your launcher
     bindsym $mod+q exec $menu
 
+    bindsym $mod+control+l exec swaylock
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
