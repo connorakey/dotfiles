@@ -58,8 +58,6 @@ alias vim='nvim'
 alias c='clear'
 alias v='nvim'
 
-export PATH="$HOME/.emacs.d/bin:$PATH"
-
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
