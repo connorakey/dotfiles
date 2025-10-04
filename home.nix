@@ -3,6 +3,9 @@
 let
   dotfiles = "${config.home.homeDirectory}/.nixos/config";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
+  configs = {
+    nvim = "nvim";
+  };
 in 
 
 {
@@ -11,10 +14,12 @@ in
   programs.git.enable = true;
   home.stateVersion = "25.05";
 
-  xdg.configFile.nvim = {
-      source = create_symlink "/home/connor/.nixos/config/nvim/";
-      recursive = true;
-    };
+  xdg.configFile = builtins.mapAttrs
+    (name: subpath: {
+      source = create_symlink "${dotfiles}/${subpath}";
+        recursive = true;
+    })
+      configs;
 
   home.packages = with pkgs; [
     nixpkgs-fmt
