@@ -30,6 +30,11 @@
   };
 
   services.displayManager.ly.enable = true;
+  services.flatpak.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 
   services.xserver.xkb = {
     layout = "us";
@@ -57,7 +62,6 @@
     _1password-gui
     tmux
     zoxide
-    flatpak
   ];
 
   fonts.packages = with pkgs; [
@@ -74,6 +78,7 @@
   };
 
   programs.zsh.enable = true;
+  programs.steam.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "25.05";
