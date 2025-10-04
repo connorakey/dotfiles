@@ -1,10 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-    ];
+  imports = [ ./hardware-configuration.nix ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -16,7 +13,7 @@
   networking.networkmanager.enable = true;
 
   time.timeZone = "Australia/Melbourne";
-  
+
   services.xserver = {
     enable = true;
     autoRepeatDelay = 200;
@@ -24,9 +21,7 @@
   };
   services.xserver.windowManager.dwm = {
     enable = true;
-    package = pkgs.dwm.overrideAttrs {
-      src = ./config/dwm;
-    };
+    package = pkgs.dwm.overrideAttrs { src = ./config/dwm; };
   };
 
   services.displayManager.ly.enable = true;
@@ -45,7 +40,7 @@
     isNormalUser = true;
     description = "Connor";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
   };
 
   hardware.bluetooth.enable = true;
@@ -53,7 +48,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    neovim 
+    neovim
     wget
     git
     ripgrep
@@ -64,9 +59,7 @@
     zoxide
   ];
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-  ];
+  fonts.packages = with pkgs; [ nerd-fonts.jetbrains-mono ];
 
   environment.etc = {
     "1password/custom_allowed_browsers" = {

@@ -8,9 +8,8 @@ let
     alacritty = "alacritty";
     ohmyposh = "ohmyposh";
   };
-in 
 
-{
+in {
 
   home.username = "connor";
   home.homeDirectory = "/home/connor";
@@ -22,12 +21,10 @@ in
     EDITOR = "nvim";
   };
 
-  xdg.configFile = builtins.mapAttrs
-    (name: subpath: {
-      source = create_symlink "${dotfiles}/${subpath}";
-        recursive = true;
-    })
-      configs;
+  xdg.configFile = builtins.mapAttrs (name: subpath: {
+    source = create_symlink "${dotfiles}/${subpath}";
+    recursive = true;
+  }) configs;
 
   home.packages = with pkgs; [
     nixpkgs-fmt
