@@ -31,5 +31,7 @@ in
     tree-sitter
     python3Packages.pip
     fastfetch
+    alacritty
+    firefox
   ];
 }
