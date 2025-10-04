@@ -10,11 +10,6 @@ in
 
 {
 
-  imports =
-    [
-      ./suckless.nix
-    ];
-
   home.username = "connor";
   home.homeDirectory = "/home/connor";
   programs.git.enable = true;
@@ -39,5 +34,6 @@ in
     fastfetch
     alacritty
     firefox
+    dmenu
   ];
 }
