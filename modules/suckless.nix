@@ -2,10 +2,11 @@
 
 {
   home.packages = with pkgs; [
-    (pkgs.dmenu.overrideAttrs (_: {
-      src = ../config/dmenu;
-      patches = [ ];;
+    (pkgs.dmenu.overrideAttrs (oldAttrs: {
+      src = pkgs.lib.cleanSource ../config/dmenu;
+      patches = [];
     }))
     slock
   ];
 }
+

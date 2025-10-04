@@ -9,6 +9,12 @@ let
 in 
 
 {
+
+  imports =
+    [
+      ./modules/suckless.nix
+    ];
+
   home.username = "connor";
   home.homeDirectory = "/home/connor";
   programs.git.enable = true;
