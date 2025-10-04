@@ -45,6 +45,9 @@
      neovim 
      wget
      git
+     ripgrep
+     fd
+     fzf
   ];
 
   fonts.packages = with pkgs; [
