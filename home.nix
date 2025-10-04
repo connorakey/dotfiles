@@ -12,7 +12,7 @@ in
 
   imports =
     [
-      ./modules/suckless.nix
+      ./suckless.nix
     ];
 
   home.username = "connor";
