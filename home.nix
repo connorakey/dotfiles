@@ -46,6 +46,10 @@ in
     oh-my-posh
     vesktop
     steam
+    spotify
+    rustup
+    unzip
+    go
     jetbrains.webstorm
     jetbrains.rust-rover
     jetbrains.pycharm-professional
