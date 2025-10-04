@@ -30,5 +30,6 @@ in
     luarocks
     tree-sitter
     python3Packages.pip
+    fastfetch
   ];
 }
