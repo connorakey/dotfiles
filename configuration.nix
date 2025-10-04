@@ -48,17 +48,32 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-     neovim 
-     wget
-     git
-     ripgrep
-     fd
-     fzf
+    neovim 
+    wget
+    git
+    ripgrep
+    fd
+    fzf
+    _1password-gui
+    tmux
+    zoxide
+    flatpak
   ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
+
+  environment.etc = {
+    "1password/custom_allowed_browsers" = {
+      text = ''
+        firefox
+      '';
+      mode = "0775";
+    };
+  };
+
+  programs.zsh.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "25.05";
