@@ -16,11 +16,17 @@
   networking.networkmanager.enable = true;
 
   time.timeZone = "Australia/Melbourne";
-
+  
   services.xserver = {
     enable = true;
     autoRepeatDelay = 200;
     autoRepeatInterval = 35;
+  };
+  services.xserver.windowManager.dwm = {
+    enable = true;
+    package = pkgs.dwm.overrideAttrs {
+      src = ./config/dwm;
+    };
   };
 
   services.displayManager.ly.enable = true;
