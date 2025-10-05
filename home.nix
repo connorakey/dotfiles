@@ -61,6 +61,7 @@ in {
     rustup
     unzip
     go
+    xclip
     jetbrains.webstorm
     jetbrains.rust-rover
     jetbrains.pycharm-professional
