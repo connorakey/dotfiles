@@ -62,6 +62,7 @@ in {
     unzip
     go
     xclip
+    claude-code
     jetbrains.webstorm
     jetbrains.rust-rover
     jetbrains.pycharm-professional
