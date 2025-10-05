@@ -24,8 +24,10 @@ in {
   programs.git = {
     userName = "connorakey";
     userEmail = "connorakey@proton.me";
-
-    extraConfig = { url."https://github.com/".insteadOf = "git@github.com:"; };
+    extraConfig = {
+      url."https://github.com/".insteadOf = "git@github.com:";
+      credential.helper = "!gh auth git-credential";
+    };
   };
 
   programs.gh = {
