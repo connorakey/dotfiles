@@ -82,6 +82,7 @@
     gnomeExtensions.dash-to-dock
     gnomeExtensions.blur-my-shell
     gnomeExtensions.caffeine
+    gnome-tweaks
   ];
 
   services.udev.packages = with pkgs; [ gnome-settings-daemon ];
