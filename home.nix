@@ -21,6 +21,18 @@ in {
     EDITOR = "nvim";
   };
 
+  programs.git = {
+    userName = "connorakey";
+    userEmail = "connorakey@proton.me";
+
+    extraConfig = { url."https://github.com/".insteadOf = "git@github.com:"; };
+  };
+
+  programs.gh = {
+    enable = true;
+    gitCredentialHelper = { enable = true; };
+  };
+
   xdg.configFile = builtins.mapAttrs (name: subpath: {
     source = create_symlink "${dotfiles}/${subpath}";
     recursive = true;
