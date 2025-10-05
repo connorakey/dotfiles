@@ -41,6 +41,7 @@
     description = "Connor";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [ ];
+    shell = pkgs.zsh;
   };
 
   hardware.bluetooth.enable = true;
