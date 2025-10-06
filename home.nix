@@ -63,6 +63,7 @@ in {
     go
     xclip
     claude-code
+    vlc
     jetbrains.webstorm
     jetbrains.rust-rover
     jetbrains.pycharm-professional
