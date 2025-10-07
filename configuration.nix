@@ -98,6 +98,8 @@
     };
   };
 
+  nixpkgs.config.permittedInsecurePackages = [ "qtwebengine-5.15.19" ];
+
   programs.zsh.enable = true;
   programs.steam.enable = true;
 

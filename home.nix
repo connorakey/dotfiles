@@ -64,6 +64,7 @@ in {
     xclip
     claude-code
     vlc
+    stremio
     jetbrains.webstorm
     jetbrains.rust-rover
     jetbrains.pycharm-professional
