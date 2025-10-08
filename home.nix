@@ -71,5 +71,6 @@ in {
     jetbrains.idea-ultimate
     jetbrains.clion
     jetbrains.gateway
+    blueman
   ];
 }
