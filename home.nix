@@ -62,7 +62,7 @@ in {
     unzip
     go
     xclip
-    claude-code
+    opencode
     vlc
     stremio
     jetbrains.webstorm
