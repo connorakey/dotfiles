@@ -63,3 +63,5 @@ eval "$(zoxide init --cmd cd zsh)"
 
 fastfetch
 date
+
+export EDITOR='nvim'
