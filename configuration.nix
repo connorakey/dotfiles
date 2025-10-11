@@ -18,7 +18,6 @@
     enable = true;
     autoRepeatDelay = 200;
     autoRepeatInterval = 35;
-    desktopManager.gnome.enable = true;
   };
   services.xserver.windowManager.dwm = {
     enable = true;
@@ -36,24 +35,6 @@
     layout = "us";
     variant = "";
   };
-
-  environment.gnome.excludePackages = (with pkgs; [
-    atomix
-    cheese
-    epiphany
-    evince
-    geary
-    gedit
-    gnome-characters
-    gnome-music
-    gnome-photos
-    gnome-terminal
-    gnome-tour
-    hitori
-    iagno
-    tali
-    totem
-  ]);
 
   users.users.connor = {
     isNormalUser = true;
@@ -77,16 +58,8 @@
     _1password-gui
     tmux
     zoxide
-    adwaita-icon-theme
-    gnomeExtensions.appindicator
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.caffeine
-    gnome-tweaks
     lsof
   ];
-
-  services.udev.packages = with pkgs; [ gnome-settings-daemon ];
 
   fonts.packages = with pkgs; [ nerd-fonts.jetbrains-mono ];
 
