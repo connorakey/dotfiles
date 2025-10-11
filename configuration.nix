@@ -83,6 +83,7 @@
     gnomeExtensions.blur-my-shell
     gnomeExtensions.caffeine
     gnome-tweaks
+    lsof
   ];
 
   services.udev.packages = with pkgs; [ gnome-settings-daemon ];
@@ -97,6 +98,13 @@
       mode = "0775";
     };
   };
+
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowSuspendThenHibernate=no
+    AllowHybridSleep=no
+  '';
 
   nixpkgs.config.permittedInsecurePackages = [ "qtwebengine-5.15.19" ];
 
